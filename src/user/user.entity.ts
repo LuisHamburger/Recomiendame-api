@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Post } from 'src/post/post.entity';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Recipe } from '../recipe/recipe.entity';
 
 @Entity()
 export class User {
@@ -16,4 +18,11 @@ export class User {
 
   @Column({ name: 'level', enum: ['beginner', 'intermediate', 'expert'] })
   level: 'beginner' | 'intermediate' | 'expert';
+
+  @OneToMany(() => Post, (post) => post.postedBy)
+  posts: Post[];
+
+  @ManyToMany(() => Recipe)
+  @JoinTable()
+  favoriteRecipes: Recipe[];
 }
