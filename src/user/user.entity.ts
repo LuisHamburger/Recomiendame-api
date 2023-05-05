@@ -1,5 +1,12 @@
-import { Post } from 'src/post/post.entity';
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Post } from '../post/post.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Recipe } from '../recipe/recipe.entity';
 
 @Entity()
