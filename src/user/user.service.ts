@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
+
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 
@@ -19,10 +21,17 @@ export class UserService {
   }
 
   async createUser(user: Partial<User>): Promise<User> {
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 
   async updateUser(user: Partial<User>): Promise<User> {
-    return this.userRepository.save(user);
+    if (user.password) {
+      const salt = bcrypt.genSaltSync(10);
+      user.password = bcrypt.hashSync(user.password, salt);
+    }
+
+    if (user.email) user.email = user.email.toUpperCase();
+
+    return await this.userRepository.save(user);
   }
 }

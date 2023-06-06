@@ -50,17 +50,14 @@ export class AuthService {
   }
 
   async registerUser(userDTO: UserDTO): Promise<AuthResponseToken> {
-    const userExist = await this.userService.findOneByEmail(
-      userDTO.email.toUpperCase(),
-    );
+    const email = userDTO.email.toUpperCase();
+
+    const userExist = await this.userService.findOneByEmail(email);
 
     if (userExist) throw new ConflictException('Email is already registered');
 
     const salt = bcrypt.genSaltSync(10);
-
     const password = bcrypt.hashSync(userDTO.password, salt);
-
-    const email = userDTO.email.toUpperCase();
 
     const level = userDTO.level;
 
