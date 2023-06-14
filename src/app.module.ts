@@ -3,7 +3,6 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
-import { RecipeModule } from './recipe/recipe.module';
 import { PostModule } from './post/post.module';
 
 @Module({
@@ -12,7 +11,6 @@ import { PostModule } from './post/post.module';
     AuthModule,
     DatabaseModule,
     UserModule,
-    RecipeModule,
     PostModule,
   ],
 })

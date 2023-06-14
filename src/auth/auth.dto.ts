@@ -12,10 +12,6 @@ export class UserDTO {
   @IsString()
   @IsNotEmpty()
   password: string;
-
-  @IsIn(['beginner', 'intermediate', 'expert'])
-  @IsNotEmpty()
-  level: 'beginner' | 'intermediate' | 'expert';
 }
 
 export class LoginDTO {

@@ -1,5 +1,4 @@
 import { User } from '../user/user.entity';
-import { Recipe } from '../recipe/recipe.entity';
 import {
   Column,
   Entity,
@@ -13,11 +12,11 @@ export class Post {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'title' })
-  title: string;
+  @Column({ name: 'start' })
+  start: number;
 
-  @Column({ name: 'description' })
-  description: string;
+  @Column({ name: 'image_url' })
+  imageUrl: string;
 
   @Column({ name: 'created_at', type: 'timestamptz' })
   createdAt: Date;
@@ -28,11 +27,4 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn({ name: 'posted_by_id', referencedColumnName: 'id' })
   postedBy: User;
-
-  @Column({ name: 'recipe_id' })
-  recipeId: string;
-
-  @ManyToOne(() => Recipe, (recipe) => recipe.posts)
-  @JoinColumn({ name: 'recipe_id', referencedColumnName: 'id' })
-  recipe: Recipe;
 }
