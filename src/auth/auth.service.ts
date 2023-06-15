@@ -59,7 +59,7 @@ export class AuthService {
     const salt = bcrypt.genSaltSync(10);
     const password = bcrypt.hashSync(userDTO.password, salt);
 
-    const fullName = userDTO.fullName;
+    const fullName = userDTO.name;
 
     const user = await this.userService.createUser({
       email,
